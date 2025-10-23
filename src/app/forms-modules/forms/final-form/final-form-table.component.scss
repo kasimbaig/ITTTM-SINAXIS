@@ -1,0 +1,93 @@
+// Final Form Table Component
+$primary-purple: #6B46C1;
+$primary-teal: #14B8A6;
+
+.form-table-container {
+  .table-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $primary-purple;
+
+      i {
+        color: $primary-teal;
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.75rem;
+
+      button {
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, $primary-purple, $primary-teal);
+        border: none;
+        border-radius: 0.5rem;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(107, 70, 193, 0.3);
+        }
+      }
+    }
+  }
+
+  .table-content {
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background: rgba(107, 70, 193, 0.1);
+
+        th {
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.9);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      tbody {
+        tr {
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.03);
+          }
+
+          td {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          }
+        }
+      }
+    }
+  }
+}

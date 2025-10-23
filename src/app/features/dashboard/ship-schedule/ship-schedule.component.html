@@ -1,0 +1,113 @@
+<div class="ship-schedule-container">
+  <!-- Header Section -->
+  <div class="schedule-header">
+    <h2 class="schedule-title">
+      <i class="fa-solid fa-calendar-days"></i>
+      Fleet Maintenance Schedule
+    </h2>
+    <div class="header-actions">
+      <button class="action-btn">
+        <i class="fa-solid fa-filter"></i>
+        Filter
+      </button>
+      <button class="action-btn">
+        <i class="fa-solid fa-download"></i>
+        Export
+      </button>
+    </div>
+  </div>
+
+  <!-- Schedule Content -->
+  <div class="schedule-content">
+    <!-- Left Side - Ships List -->
+    <div class="ships-sidebar">
+      <div class="sidebar-header">
+        <button class="collapse-btn">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <h3 class="fleet-title">Naval Fleet <span class="ship-count">({{ships.length}} ships)</span></h3>
+      </div>
+
+      <div class="ships-list">
+        <div *ngFor="let ship of ships" class="ship-item">
+          <div class="ship-avatar" [style.background]="'linear-gradient(135deg, #6B46C1, #14B8A6)'">
+            {{ ship.avatar }}
+          </div>
+          <div class="ship-info">
+            <h4 class="ship-name">{{ ship.name }}</h4>
+            <p class="ship-type">{{ ship.type }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Timeline Grid -->
+    <div class="timeline-section">
+      <!-- Date Headers -->
+      <div class="date-headers">
+        <div *ngFor="let date of dateHeaders" class="date-header">
+          {{ formatDate(date) }}
+        </div>
+      </div>
+
+      <!-- Timeline Rows -->
+      <div class="timeline-grid">
+        <div *ngFor="let ship of ships" class="timeline-row">
+          <div class="timeline-track">
+            <!-- Maintenance Events -->
+            <div
+              *ngFor="let event of ship.maintenanceEvents"
+              class="maintenance-event"
+              [style.left]="getEventPosition(event).left"
+              [style.width]="getEventPosition(event).width"
+              [style.background]="event.color"
+              [title]="event.label"
+            >
+              <span class="event-label">{{ event.label }}</span>
+              <span class="event-indicator"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="schedule-legend">
+    <h4 class="legend-title">Legend:</h4>
+    <div class="legend-items">
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #F59E0B;"></span>
+        Medium Refit
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #3B82F6;"></span>
+        Docking
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #A855F7;"></span>
+        Minor Repair
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #14B8A6;"></span>
+        Scheduled
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #8B5CF6;"></span>
+        Propulsion
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #10B981;"></span>
+        Short Refit
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #EF4444;"></span>
+        Long Refit
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background: #F97316;"></span>
+        Major Refit
+      </div>
+    </div>
+  </div>
+</div>

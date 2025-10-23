@@ -1,0 +1,446 @@
+// Ship Schedule Component Styles
+// Modern Timeline Design with Purple-Teal Theme
+
+$primary-purple: #6B46C1;
+$primary-teal: #14B8A6;
+$bg-card: #FFFFFF;
+$bg-light: #F9FAFB;
+$border-color: #E5E7EB;
+$text-primary: #1F2937;
+$text-secondary: #6B7280;
+$shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+.ship-schedule-container {
+  background: $bg-card;
+  border-radius: 20px;
+  box-shadow: $shadow;
+  padding: 2rem;
+  margin: 2rem 0;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// Header Section
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid $border-color;
+
+  .schedule-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    i {
+      background: linear-gradient(135deg, $primary-purple, $primary-teal);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2rem;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 0.75rem;
+
+    .action-btn {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, $primary-purple, $primary-teal);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+      }
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Schedule Content
+.schedule-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 0;
+  border: 1px solid $border-color;
+  border-radius: 16px;
+  overflow: hidden;
+  background: $bg-light;
+}
+
+// Ships Sidebar
+.ships-sidebar {
+  background: white;
+  border-right: 2px solid $border-color;
+
+  .sidebar-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 2px solid $border-color;
+    background: linear-gradient(135deg, 
+      rgba(107, 70, 193, 0.05), 
+      rgba(20, 184, 166, 0.05));
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .collapse-btn {
+      width: 32px;
+      height: 32px;
+      background: rgba(107, 70, 193, 0.1);
+      border: none;
+      border-radius: 8px;
+      color: $primary-purple;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: rgba(107, 70, 193, 0.2);
+        transform: scale(1.1);
+      }
+
+      i {
+        font-size: 0.9rem;
+      }
+    }
+
+    .fleet-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin: 0;
+
+      .ship-count {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: $text-secondary;
+      }
+    }
+  }
+
+  .ships-list {
+    .ship-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid $border-color;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(107, 70, 193, 0.03);
+        padding-left: 2rem;
+      }
+
+      .ship-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(107, 70, 193, 0.3);
+        flex-shrink: 0;
+      }
+
+      .ship-info {
+        flex: 1;
+        min-width: 0;
+
+        .ship-name {
+          font-size: 1rem;
+          font-weight: 600;
+          color: $text-primary;
+          margin: 0 0 0.25rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .ship-type {
+          font-size: 0.8rem;
+          color: $text-secondary;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// Timeline Section
+.timeline-section {
+  overflow-x: auto;
+
+  .date-headers {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: white;
+    border-bottom: 2px solid $border-color;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    .date-header {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: $text-secondary;
+      border-right: 1px solid $border-color;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .timeline-grid {
+    .timeline-row {
+      border-bottom: 1px solid $border-color;
+      min-height: 72px;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: rgba(107, 70, 193, 0.02);
+      }
+
+      .timeline-track {
+        position: relative;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: repeating-linear-gradient(
+            to right,
+            transparent,
+            transparent calc(100% / 7 - 1px),
+            $border-color calc(100% / 7 - 1px),
+            $border-color calc(100% / 7)
+          );
+          pointer-events: none;
+        }
+
+        .maintenance-event {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 40px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 1rem;
+          color: white;
+          font-size: 0.8rem;
+          font-weight: 600;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          overflow: hidden;
+          white-space: nowrap;
+          z-index: 5;
+
+          &:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            z-index: 10;
+          }
+
+          .event-label {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          }
+
+          .event-indicator {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-left: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Legend
+.schedule-legend {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid $border-color;
+
+  .legend-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 1rem;
+  }
+
+  .legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: $text-secondary;
+
+      .legend-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+  .schedule-content {
+    grid-template-columns: 250px 1fr;
+  }
+
+  .ships-sidebar .ship-item {
+    padding: 0.875rem 1.25rem;
+
+    .ship-avatar {
+      width: 42px;
+      height: 42px;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .ship-schedule-container {
+    padding: 1.5rem;
+  }
+
+  .schedule-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .schedule-title {
+      font-size: 1.5rem;
+    }
+
+    .header-actions {
+      width: 100%;
+
+      .action-btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+  }
+
+  .schedule-content {
+    grid-template-columns: 1fr;
+  }
+
+  .ships-sidebar {
+    border-right: none;
+    border-bottom: 2px solid $border-color;
+  }
+
+  .timeline-section {
+    .date-headers {
+      font-size: 0.75rem;
+
+      .date-header {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+
+    .timeline-grid .timeline-row .timeline-track .maintenance-event {
+      height: 32px;
+      font-size: 0.7rem;
+      padding: 0 0.75rem;
+
+      .event-indicator {
+        width: 6px;
+        height: 6px;
+      }
+    }
+  }
+
+  .schedule-legend {
+    .legend-items {
+      gap: 1rem;
+
+      .legend-item {
+        font-size: 0.8rem;
+
+        .legend-dot {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,245 @@
+<!-- DART Revolutionary Dashboard -->
+<div class="dart-dashboard-modern">
+  <!-- Stunning Hero Section -->
+  <div class="dart-hero">
+    <div class="hero-bg-pattern">
+      <div class="pattern-orb orb-red"></div>
+      <div class="pattern-orb orb-orange"></div>
+      <div class="pattern-orb orb-yellow"></div>
+    </div>
+    
+    <div class="dart-hero-content">
+      <div class="hero-badge">
+        <div class="badge-glow"></div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      
+      <div class="hero-title-section">
+        <h1 class="dart-hero-title">
+          <span class="title-line-1">DART</span>
+          <span class="title-line-2">Defect Analysis & Reporting</span>
+        </h1>
+        <p class="dart-hero-subtitle">Real-time defect tracking and comprehensive analytics system</p>
+      </div>
+      
+      <div class="hero-quick-stats">
+        <div class="quick-stat-item">
+          <i class="fa-solid fa-exclamation-circle"></i>
+          <span class="stat-label">Active Defects</span>
+          <span class="stat-value">{{ kpiMetrics[0]?.value || '0' }}</span>
+        </div>
+        <div class="quick-stat-item">
+          <i class="fa-solid fa-check-circle"></i>
+          <span class="stat-label">Resolved</span>
+          <span class="stat-value">{{ kpiMetrics[1]?.value || '0' }}</span>
+        </div>
+        <div class="quick-stat-item glow-stat">
+          <i class="fa-solid fa-clock"></i>
+          <span class="stat-label">Live Updates</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced Filter Section -->
+  <div class="dart-filters-modern">
+    <div class="filters-header">
+      <h3>
+        <i class="fa-solid fa-filter"></i>
+        Filter Options
+      </h3>
+    </div>
+    
+    <div class="filters-grid">
+      <div class="filter-card">
+        <label>
+          <i class="fa-solid fa-building"></i>
+          Organization
+        </label>
+        <p-dropdown 
+          [options]="organizationalFilterOptions" 
+          [(ngModel)]="selectedOrganizationalFilter"
+          (onChange)="onOrganizationalFilterChange($event)" 
+          placeholder="Select Organization" 
+          optionLabel="label" 
+          [filter]="true" 
+          [filterBy]="'label'"
+          optionValue="value" 
+          styleClass="modern-dropdown" 
+          [appendTo]="'body'">
+        </p-dropdown>
+      </div>
+
+      <div class="filter-card">
+        <label>
+          <i class="fa-solid fa-flag"></i>
+          Command
+        </label>
+        <p-dropdown 
+          [options]="commandOptions" 
+          [(ngModel)]="selectedCommand" 
+          (onChange)="onCommandChange($event)"
+          placeholder="Select Command" 
+          optionLabel="label" 
+          optionValue="value" 
+          [showClear]="false" 
+          [filter]="true" 
+          [filterBy]="'label'"
+          styleClass="modern-dropdown" 
+          [appendTo]="'body'">
+        </p-dropdown>
+      </div>
+
+      <div class="filter-card">
+        <label>
+          <i class="fa-solid fa-ship"></i>
+          Ship
+        </label>
+        <p-dropdown 
+          [options]="shipOptions" 
+          [(ngModel)]="selectedShip" 
+          (onChange)="onShipChange($event)"
+          placeholder="Select Ship" 
+          optionLabel="label" 
+          optionValue="value" 
+          [showClear]="false" 
+          [filter]="true" 
+          [filterBy]="'label'"
+          styleClass="modern-dropdown" 
+          [appendTo]="'body'">
+        </p-dropdown>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <!-- Modern KPI Grid -->
+  <div class="dart-metrics-section">
+    <div class="section-header">
+      <h2>
+        <i class="fa-solid fa-chart-bar"></i>
+        Key Performance Indicators
+      </h2>
+    </div>
+    
+    <div class="dart-kpi-grid">
+      <div 
+        class="dart-kpi-card" 
+        *ngFor="let metric of kpiMetrics; let i = index"
+        [ngClass]="'kpi-variant-' + (i % 4)"
+        (click)="drillDown($event, metric.type)">
+        
+        <div class="kpi-card-bg"></div>
+        <div class="kpi-card-glow"></div>
+        
+        <div class="kpi-content">
+          <div class="kpi-icon-section">
+            <div class="icon-container">
+              <i [ngClass]="metric.iconClass"></i>
+            </div>
+            <span class="kpi-type">{{ metric.type }}</span>
+          </div>
+          
+          <div class="kpi-data">
+            <h3 class="kpi-title">{{ metric.title }}</h3>
+            <div class="kpi-value">{{ metric.value }}</div>
+            <p class="kpi-description" *ngIf="metric.description">{{ metric.description }}</p>
+          </div>
+          
+          <div class="kpi-action">
+            <button class="view-details-btn">
+              <span>View Details</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="dart-chart-section">
+    <div class="chart-container-modern">
+      <div class="chart-header">
+        <div class="header-left">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Defect Response Time Analysis</h3>
+        </div>
+        <button class="expand-chart-btn">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+      </div>
+      <div class="chart-body">
+        <app-drt-chart></app-drt-chart>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modern Dialog -->
+<p-dialog 
+  [(visible)]="displayDrilldownDialog" 
+  [header]="drilldownDialogTitle" 
+  [modal]="true"
+  [style]="{ width: '80vw', maxWidth: '1200px' }" 
+  [baseZIndex]="10000" 
+  (onHide)="onHideDrilldownDialog()"
+  styleClass="dart-modern-dialog">
+  
+  <ng-template pTemplate="header">
+    <div class="dialog-header-modern">
+      <i class="fa-solid fa-table"></i>
+      <span>{{ drilldownDialogTitle }}</span>
+    </div>
+  </ng-template>
+  
+  <ng-template pTemplate="content">
+    <div class="dialog-content-modern">
+      <p-table 
+        [value]="drilldownTableData" 
+        [columns]="drilldownTableCols" 
+        [paginator]="true" 
+        [rows]="10"
+        [rowHover]="true" 
+        styleClass="modern-data-table">
+        
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon *ngIf="col.field" [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{ rowData[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="emptyMessage">
+          <tr>
+            <td [attr.colspan]="drilldownTableCols.length" class="empty-message">
+              <i class="fa-solid fa-inbox"></i>
+              <p>No records found</p>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </ng-template>
+  
+  <ng-template pTemplate="footer">
+    <div class="dialog-footer-modern">
+      <button class="close-dialog-btn" (click)="onHideDrilldownDialog()">
+        <i class="fa-solid fa-times"></i>
+        <span>Close</span>
+      </button>
+    </div>
+  </ng-template>
+</p-dialog>

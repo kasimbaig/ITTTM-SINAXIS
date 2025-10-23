@@ -1,0 +1,103 @@
+<!-- INSMA Landing Page Design -->
+<div class="insma-container">
+  <!-- Navy Blue Header -->
+  <header class="insma-header">
+    <div class="header-content">
+      <div class="logo-section">
+        <img src="assets/navy-logo.png" alt="Indian Navy Logo" class="navy-logo" onerror="this.style.display='none'" />
+        <div class="brand-info">
+          <h1 class="brand-title">INDIAN NAVAL SHIP MAINTENANCE AUTHORITY</h1>
+          <p class="brand-subtitle">CENTRE OF EXCELLENCE FOR DATA ANALYTICS</p>
+        </div>
+      </div>
+      
+      <nav class="nav-buttons">
+        <button class="nav-btn active">
+          <i class="fa-solid fa-home"></i>
+          HOME
+        </button>
+        <button class="nav-btn">
+          <i class="fa-solid fa-users"></i>
+          ABOUT US
+        </button>
+        <button class="nav-btn">
+          <i class="fa-solid fa-phone"></i>
+          CONTACT US
+        </button>
+        <button class="nav-btn export-btn">
+          <i class="fa-solid fa-download"></i>
+          Export
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Mission Statement Card -->
+    <div class="mission-card">
+      <h2 class="mission-title">MISSION STATEMENT</h2>
+      <p class="mission-text">
+        Provide Authoritative Decision Support towards Sustained Reliability & Combat Readiness 
+        of Indian Navy Platforms through Comprehensive Maintenance Management System.
+      </p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Anwesh Search"
+      />
+      <button class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <h2 class="login-title">ITTTM LOGIN</h2>
+      
+      <form class="login-form" (ngSubmit)="onLogin()">
+        <div class="form-field">
+          <div class="input-with-icon">
+            <i class="fa-solid fa-user input-icon"></i>
+            <input
+              type="text"
+              placeholder="User Login"
+              [(ngModel)]="username"
+              name="username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+            <button type="button" class="toggle-password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-login">
+            Login
+          </button>
+          <button type="button" class="btn-new-user">
+            New User
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
