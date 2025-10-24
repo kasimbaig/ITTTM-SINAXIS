@@ -31,6 +31,15 @@
                 <span>Report</span>
             </button>
         </div>
+        <div class="relative masters-dropdown-container text-sm">
+            <button
+                class="nav-item flex items-center px-4 py-2 rounded-lg transition-all duration-200 ease-in-out masters-button"
+                [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'dynmic-from', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'dynmic-from'}"
+                (click)="navigateToEtma('dynmic-from')">
+                <i class="fa-solid fa-chart-bar mr-2"></i>
+                <span>Dynamic Form</span>
+            </button>
+        </div>
     </div>
 
     <!-- Main Content Area -->
@@ -130,6 +139,10 @@
             (dataLoaded)="onDataLoaded($event)">
         </app-paginated-table>
     </div>
+    <div class="max-w-screen-xl mx-auto" *ngIf="activeSubPath === 'dynmic-from'">
+        <app-dynmic-from></app-dynmic-from>
+    </div>
+
 </div>
 
 <!-- Delete Confirmation Modal -->

@@ -27,7 +27,7 @@
 
             <!-- HITU Forms Dropdown Menu -->
             <div *ngIf="showHituDropdown"
-                class="absolute z-20 bg-white rounded-xl shadow-lg py-2 mt-2 w-64 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none hitu-dropdown-menu h-96 overflow-y-auto overflow-x-hidden">
+                class="absolute z-20 bg-white rounded-xl shadow-lg py-2 mt-2 w-64 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none hitu-dropdown-menu h-auto overflow-y-auto overflow-x-hidden">
                 <button *ngFor="let item of hituMenuItems"
                     class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center transition-colors duration-150 ease-in-out"
                     (click)="navigateToHituSubItem(item.path)">
