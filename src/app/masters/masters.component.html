@@ -128,12 +128,6 @@
   <i class="fa-solid fa-users mr-2"></i>
   <span>Overseeing</span>
 </button> -->
-  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
-  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'compartment', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'compartment'}"
-  (click)="navigateTo('compartment')">
-  <i class="fa-solid fa-building mr-2"></i>
-  <span>Compartment</span>
-</button>
 <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'equip-master', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'equip-master'}"
   (click)="navigateTo('equip-master')">
@@ -146,12 +140,12 @@
   <i class="fa-solid fa-cogs mr-2"></i>
   <span>Propulsion</span>
 </button>
-  <!-- <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
+  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'country', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'country'}"
   (click)="navigateTo('country')">
   <i class="fa-solid fa-flag mr-2"></i>
   <span>Country</span>
-</button> -->
+</button>
   <!-- <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'cluster', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'cluster'}"
   (click)="navigateTo('cluster')">
@@ -159,10 +153,10 @@
   <span>Cluster</span>
 </button> -->
   <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
-  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'dockyard', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'dockyard'}"
-  (click)="navigateTo('dockyard')">
-  <i class="fa-solid fa-anchor mr-2"></i>
-  <span>Dockyard</span>
+  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'compartment', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'compartment'}"
+  (click)="navigateTo('compartment')">
+  <i class="fa-solid fa-building mr-2"></i>
+  <span>Compartment</span>
 </button>
   <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'damage-type', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'damage-type'}"
@@ -170,7 +164,12 @@
   <i class="fa-solid fa-exclamation-triangle mr-2"></i>
   <span>Damage Type</span>
 </button>
-
+  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
+  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'dockyard', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'dockyard'}"
+  (click)="navigateTo('dockyard')">
+  <i class="fa-solid fa-anchor mr-2"></i>
+  <span>Dockyard</span>
+</button>
   <!-- <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'fleet', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'fleet'}"
   (click)="navigateTo('fleet')">
@@ -178,18 +177,17 @@
   <span>Fleet</span>
 </button> -->
   <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
-  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'operational-status', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'operational-status'}"
-  (click)="navigateTo('operational-status')">
-  <i class="fa-solid fa-check-circle mr-2"></i>
-  <span>Operational Status</span>
-</button>
-  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'module', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'module'}"
   (click)="navigateTo('module')">
   <i class="fa-solid fa-cube mr-2"></i>
   <span>Module</span>
 </button>
-
+  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
+  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'operational-status', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'operational-status'}"
+  (click)="navigateTo('operational-status')">
+  <i class="fa-solid fa-check-circle mr-2"></i>
+  <span>Operational Status</span>
+</button>
   <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'refit', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'refit'}"
   (click)="navigateTo('refit')">
@@ -202,12 +200,12 @@
   <i class="fa-solid fa-th-large mr-2"></i>
   <span>Submodule</span>
 </button>
-  <!-- <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
+  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'city', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'city'}"
   (click)="navigateTo('city')">
   <i class="fa-solid fa-building mr-2"></i>
   <span>City</span>
-</button> -->
+</button>
   <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'trial-units', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'trial-units'}"
   (click)="navigateTo('trial-units')">
@@ -250,17 +248,23 @@
   <i class="fa-solid fa-sitemap mr-2"></i>
   <span>Section</span>
 </button>
-  <!-- <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
+  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'state', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'state'}"
   (click)="navigateTo('state')">
   <i class="fa-solid fa-map mr-2"></i>
   <span>State</span>
-</button> -->
+</button>
   <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
   [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'station', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'station'}"
   (click)="navigateTo('station')">
   <i class="fa-solid fa-map-pin mr-2"></i>
   <span>Station</span>
+</button>
+  <button class="nav-item flex items-center px-2 py-2 rounded-lg transition-all duration-200 ease-in-out text-sm"
+  [ngClass]="{'active bg-blue-600 text-white shadow-lg': activeSubPath === 'GRAPHQL', 'text-gray-700 hover:bg-blue-600 -50': activeSubPath !== 'GRAPHQL'}"
+  (click)="navigateTo('GRAPHQL')">
+  <i class="fa-solid fa-map-pin mr-2"></i>
+  <span>GRAPHQL</span>
 </button>
 </div>
 
