@@ -1,29 +1,11 @@
 <app-shared-layout>
   <div class="about-content">
-    <!-- Page Header -->
-    <div class="page-hero">
-      <div class="hero-icon">
-        <i class="fa-solid fa-building"></i>
-      </div>
-      <h1 class="page-title">About INSMA</h1>
-      <p class="page-subtitle">Organizational Structure & Leadership</p>
-    </div>
-
     <div class="organization-chart">
       <div class="chart-header">
-        <div class="header-badge">
-          <i class="fa-solid fa-sitemap"></i>
-        </div>
         <h2>{{ organizationData.title }}</h2>
         <div class="chart-info">
-          <div class="info-item">
-            <i class="fa-solid fa-calendar-check"></i>
-            <p>{{ organizationData.established }}</p>
-          </div>
-          <div class="info-item">
-            <i class="fa-solid fa-file-contract"></i>
-            <p>{{ organizationData.charter }}</p>
-          </div>
+          <p>{{ organizationData.established }}</p>
+          <p>{{ organizationData.charter }}</p>
         </div>
       </div>
 
