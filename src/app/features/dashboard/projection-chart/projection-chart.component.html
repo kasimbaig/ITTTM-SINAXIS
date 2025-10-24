@@ -1,91 +1,60 @@
-<div class="projection-chart-container">
-  <!-- Header Section -->
-  <div class="chart-header">
-    <div class="header-left">
-      <div class="title-wrapper">
-        <i class="fa-solid fa-chart-line title-icon"></i>
-        <h3 class="chart-title">Defect vs Running Hours Projection</h3>
-      </div>
-      <p class="chart-subtitle">Predictive maintenance analytics for equipment lifecycle</p>
-    </div>
-    
-    <div class="filter-controls">
-      <div class="control-group">
-        <label class="control-label">
-          <i class="fa-solid fa-ship"></i>
-          Ship
-        </label>
+<div class="w-full bg-white p-6 rounded-xl shadow-lg mb-3">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4 sm:mb-0">Defect vs Running Hours Projection</h3>
+    <div class="flex flex-col sm:flex-row gap-3">
         <p-dropdown 
-          [options]="shipOptions" 
-          [(ngModel)]="selectedShip" 
-          placeholder="Select Ship"
-          optionLabel="label" 
-          optionValue="value"
-          (onChange)="onShipChange($event)"
-          styleClass="modern-dropdown"
-        ></p-dropdown>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">
-          <i class="fa-solid fa-gear"></i>
-          Equipment
-        </label>
-        <p-dropdown 
-          [options]="equipmentOptions" 
-          [(ngModel)]="selectedEquipment" 
-          placeholder="Select Equipment"
-          optionLabel="label" 
-          optionValue="value"
-          (onChange)="onEquipmentChange($event)"
-          styleClass="modern-dropdown"
-        ></p-dropdown>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">
-          <i class="fa-solid fa-brain"></i>
-          Model
-        </label>
-        <p-dropdown 
-          [options]="projectionOptions" 
-          [(ngModel)]="selectedProjection" 
-          placeholder="Select Model"
-          optionLabel="label" 
-          optionValue="value"
-          (onChange)="onProjectionChange($event)"
-          styleClass="modern-dropdown"
-          [disabled]="!apiResponse || projectionOptions.length === 0"
-        ></p-dropdown>
-      </div>
+        [options]="shipOptions" 
+        [(ngModel)]="selectedShip" 
+        placeholder="Select Ship"
+        optionLabel="label" 
+        optionValue="value"
+        (onChange)="onShipChange($event)"
+        styleClass="filter-dropdown w-full sm:w-48"
+        >
+      </p-dropdown>
+      <p-dropdown 
+        [options]="equipmentOptions" 
+        [(ngModel)]="selectedEquipment" 
+        placeholder="Select Equipment"
+        optionLabel="label" 
+        optionValue="value"
+        (onChange)="onEquipmentChange($event)"
+        styleClass="filter-dropdown w-full sm:w-48"
+        >
+      </p-dropdown>
+      <p-dropdown 
+        [options]="projectionOptions" 
+        [(ngModel)]="selectedProjection" 
+        placeholder="Select Model"
+        optionLabel="label" 
+        optionValue="value"
+        (onChange)="onProjectionChange($event)"
+        styleClass="filter-dropdown w-full sm:w-56"
+        [disabled]="!apiResponse || projectionOptions.length === 0"
+        >
+      </p-dropdown>
     </div>
   </div>
   
-  <!-- Chart Body -->
-  <div class="chart-body">
-    <div *ngIf="loading" class="loading-state">
-      <div class="spinner"></div>
-      <p class="loading-text">Loading projection data...</p>
+  <div class="relative min-h-[400px]">
+    <div *ngIf="loading" class="flex flex-col items-center justify-center h-64 text-gray-500">
+      <i class="pi pi-spin pi-spinner text-2xl mb-2"></i>
+      <div class="text-sm">Loading projection data...</div>
     </div>
-    
-    <div *ngIf="errorMessage && !loading" class="error-state">
-      <i class="fa-solid fa-triangle-exclamation error-icon"></i>
-      <p class="error-text">{{ errorMessage }}</p>
+    <div *ngIf="errorMessage && !loading" class="flex flex-col items-center justify-center h-64 text-red-500">
+      <i class="pi pi-exclamation-triangle text-2xl mb-2"></i>
+      <div class="text-sm text-center">{{ errorMessage }}</div>
     </div>
-    
-    <div *ngIf="chartData && !loading" class="chart-wrapper">
-      <p-chart
-        type="line"
-        [data]="chartData"
-        [options]="chartOptions"
-        class="projection-chart"
-      ></p-chart>
-    </div>
-    
-    <div *ngIf="!chartData && !loading && !errorMessage" class="empty-state">
-      <i class="fa-solid fa-chart-line empty-icon"></i>
-      <p class="empty-text">No projection data available</p>
-      <p class="empty-subtext">Select a ship and equipment to view projections</p>
+    <p-chart
+      type="line"
+      [data]="chartData"
+      [options]="chartOptions"
+      *ngIf="chartData && !loading"
+      class="w-full"
+    ></p-chart>
+    <div *ngIf="!chartData && !loading && !errorMessage" class="flex flex-col items-center justify-center h-64 text-gray-400">
+      <i class="pi pi-chart-line text-4xl mb-2"></i>
+      <div class="text-sm">No projection data available</div>
     </div>
   </div>
 </div>

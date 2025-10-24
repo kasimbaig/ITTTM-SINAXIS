@@ -1,76 +1,35 @@
-<div class="shared-container">
-  <!-- Header Banner -->
-  <header class="header-banner">
-    <div class="header-content">
-      <div class="navy-emblem">
-        <img
-          src="assets/indian-navy-emblem.png"
-          alt="Indian Navy Emblem"
-          class="emblem-img"
-        />
-      </div>
-
-      <div class="header-text">
-        <h1 class="main-title">INDIAN NAVAL SHIP MAINTENANCE AUTHORITY</h1>
-        <p class="subtitle">CENTRE OF EXCELLENCE FOR DATA ANALYTICS</p>
-      </div>
+<div class="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+  <!-- Left side: Dark, formal gradient with centered content -->
+  <div class="relative min-h-screen flex flex-col items-center justify-center p-8 text-white bg-gradient-to-br from-slate-800 via-indigo-900 to-indigo-800 gap-4">
+    <header class="w-full">
+      <h1 class="main-title text-3xl md:text-4xl font-bold text-center tracking-tight">
+        Integrated Testing and Tuning Trials Management(ITTTM)
+      </h1>
+    </header>
+    <div class="navy-emblem mt-8">
+      <img
+        src="assets/indian-navy-emblem.png"
+        alt="Indian Navy Emblem"
+        class="emblem-img w-48 h-auto object-contain drop-shadow-lg"
+      />
     </div>
+    <p class="mt-12 max-w-xl text-sm md:text-base text-slate-300 leading-relaxed" style="text-align: justify;">
+      Empowering naval forces with a secure digital ecosystem that connects testing, trials, and performance — driving smarter insights and superior readiness across every stage of the fleet’s life cycle.
+    </p>
+  </div>
 
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
-      <a
-        routerLink="/home"
-        class="nav-item"
-        [class.active]="isActiveRoute('/home') || isActiveRoute('/')"
-      >
-        <mat-icon>home</mat-icon>
-        <span>HOME</span>
-      </a>
-      <a
-        routerLink="/about-us"
-        class="nav-item"
-        [class.active]="isActiveRoute('/about-us')"
-      >
-        <mat-icon>person</mat-icon>
-        <span>ABOUT US</span>
-      </a>
-      <a
-        routerLink="/contact-us"
-        class="nav-item"
-        [class.active]="isActiveRoute('/contact-us')"
-      >
-        <mat-icon>phone</mat-icon>
-        <span>CONTACT US</span>
-      </a>
-      <div class="download-menu-container">
-        <button class="nav-item" (click)="toggleDownloadMenu()">
-          <mat-icon>download</mat-icon>
-          Export
-        </button>
+  <!-- Right side: Content with subtle background; footer transparent so gradient can pass under -->
+  <div class="flex flex-col min-h-screen lg:min-h-0 bg-gradient-to-br from-slate-50 to-white">
+    <!-- Main Content Area - projected content -->
+    <main class="main-content flex-1">
+      <ng-content></ng-content>
+    </main>
 
-        <!-- Popup Menu (side by side) -->
-        <div class="download-popup" *ngIf="showDownloadMenu">
-          <button (click)="downloadFile('pptx')">Export PPTX</button>
-          <button (click)="downloadFile('pdf')">Export PDF</button>
-        </div>
+    <!-- Footer (transparent, overlay on top of backgrounds) -->
+    <!-- <footer class="footer mt-auto w-full bg-transparent">
+      <div class="text-center text-slate-600">
+        <p>India Navy © COPYRIGHT 2025</p>
       </div>
-    </nav>
-  </header>
-
-  <!-- Main Content Area - This will be replaced by each page -->
-  <main class="main-content">
-    <ng-content></ng-content>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="visitor-count">
-      <p>Total Visitor Count : {{ visitorCount.total }}</p>
-      <p>Since 01-Jan-25 : {{ visitorCount.sinceJan25 }}</p>
-      <p>Today's Count : {{ visitorCount.today }}</p>
-    </div>
-    <div class="copyright">
-      <p>ITTTM © COPYRIGHT 2025</p>
-    </div>
-  </footer>
+    </footer> -->
+  </div>
 </div>

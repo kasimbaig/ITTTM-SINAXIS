@@ -27,13 +27,6 @@
       
       <!-- Enhanced Status Section -->
       <div class="flex flex-col items-end gap-2">
-        <div class="bg-white/50 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/30 shadow-sm">
-          <p class="text-gray-600 text-sm font-semibold tracking-wide">
-            <span class="text-blue-600 font-bold">PAN NAVY</span>
-            <span class="mx-2 text-gray-400">•</span>
-            <span class="text-gray-500">{{ currentDate }}</span>
-          </p>
-        </div>
         <div class="flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 backdrop-blur-sm px-3 py-2 rounded-xl border border-emerald-200/50 shadow-sm hover:shadow-md transition-all duration-300">
           <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
           <span class="text-emerald-700 text-sm font-medium">LIVE DATA</span>
@@ -82,110 +75,78 @@
     </div>
   </div>
 
+  <!-- DART Dashboard Integration Section -->
+  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20">
+    <!-- <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
+      <div class="flex-1 min-w-0">
+        <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
+          DART DASHBOARD INTEGRATION
+        </h2>
+        <p class="text-gray-500 text-sm sm:text-base mt-2 font-medium">Defect Analysis & Reporting Tool</p>
+      </div>
+    </div> -->
+    
+    <!-- Dart Dashboard Component -->
+    <div class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-red-50/50 to-orange-50/50">
+      <app-dart-dashboard></app-dart-dashboard>
+    </div>
+  </div>
+
   
   <!-- Enhanced Interactive Stats Cards Section -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 mb-8 sm:mb-10 w-full max-w-full">
-    <!-- Total Ships Card -->
-    <div class="group bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-200/30 animate-fade-in hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.1s;">
-      <div class="flex items-center justify-between">
-        <div class="flex-1">
-          <p class="text-blue-600 text-sm font-medium mb-2">Total Ships</p>
-          <p class="text-blue-800 text-2xl sm:text-3xl font-bold mb-1 group-hover:text-blue-900 transition-colors duration-300">{{ getTotalShips() }}</p>
-          <p class="text-blue-500 text-xs">Active Fleet</p>
-        </div>
-        <div class="w-12 h-12 bg-gradient-to-br from-blue-200 to-blue-300 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-          <svg class="w-6 h-6 text-blue-700 group-hover:text-blue-800" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-full">
+    <!-- Ships in Commission Chart -->
+    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:scale-105 animate-fade-in" style="animation-delay: 1.0s;">
+      <div class="mb-4 sm:mb-6">
+        <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+          VESSELES IN COMMISSION: 149
+        </h3>
       </div>
-      <!-- Hover effect bar -->
-      <div class="mt-4 h-1 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+      <div class="relative h-64 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-violet-50/50 to-purple-50/50">
+        <div class="absolute inset-0 flex items-center justify-center z-10" *ngIf="!chartsLoaded">
+          <div class="relative">
+            <div class="w-16 h-16 border-4 border-violet-200 border-t-violet-600 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-purple-600 rounded-full animate-spin animate-reverse"></div>
+          </div>
+        </div>
+        <canvas #barChartCanvas class="relative z-20"></canvas>
+      </div>
     </div>
 
-    <!-- Command Ships Card -->
-    <!-- <div class="group bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-emerald-200/30 animate-fade-in hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.2s;">
-      <div class="flex items-center justify-between">
-        <div class="flex-1">
-          <p class="text-emerald-600 text-sm font-medium mb-2">{{ selectedCommand }} Ships</p>
-          <p class="text-emerald-800 text-2xl sm:text-3xl font-bold mb-1 group-hover:text-emerald-900 transition-colors duration-300">{{ getCommandShipsCount() }}</p>
-          <p class="text-emerald-500 text-xs">In Command</p>
-        </div>
-        <div class="w-12 h-12 bg-gradient-to-br from-emerald-200 to-emerald-300 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-          <svg class="w-6 h-6 text-emerald-700 group-hover:text-emerald-800" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-          </svg>
-        </div>
+    <!-- Operational Availability Chart -->
+    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:scale-105 animate-fade-in" style="animation-delay: 1.1s;">
+      <div class="mb-4 sm:mb-6">
+        <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-rose-600 via-pink-600 to-red-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+          OPERATIONAL AVAILABILITY
+        </h3>
       </div>
-      <div class="mt-4 h-1 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-    </div> -->
-
-    <!-- Total RH at Sea Card -->
-    <div class="group bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-cyan-200/30 animate-fade-in hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.3s;">
-      <div class="flex items-center justify-between">
-        <div class="flex-1">
-          <p class="text-cyan-600 text-sm font-medium mb-2">Total RH at Sea</p>
-          <p class="text-cyan-800 text-2xl sm:text-3xl font-bold mb-1 group-hover:text-cyan-900 transition-colors duration-300">{{ getTotalRHAtSea() }}</p>
-          <p class="text-cyan-500 text-xs">Hours</p>
+      <div class="relative h-64 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-rose-50/50 to-pink-50/50">
+        <div class="absolute inset-0 flex items-center justify-center z-10" *ngIf="!chartsLoaded">
+          <div class="relative">
+            <div class="w-16 h-16 border-4 border-rose-200 border-t-rose-600 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-pink-600 rounded-full animate-spin animate-reverse"></div>
+          </div>
         </div>
-        <div class="w-12 h-12 bg-gradient-to-br from-cyan-200 to-cyan-300 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-          <svg class="w-6 h-6 text-cyan-700 group-hover:text-cyan-800" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-          </svg>
-        </div>
+        <canvas #donutChartCanvas class="relative z-20"></canvas>
       </div>
-      <div class="mt-4 h-1 bg-gradient-to-r from-cyan-600 to-cyan-700 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
     </div>
 
-    <!-- Avg RH at Sea Card -->
-    <div class="group bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-teal-200/30 animate-fade-in hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.4s;">
-      <div class="flex items-center justify-between">
-        <div class="flex-1">
-          <p class="text-teal-600 text-sm font-medium mb-2">Avg RH at Sea</p>
-          <p class="text-teal-800 text-2xl sm:text-3xl font-bold mb-1 group-hover:text-teal-900 transition-colors duration-300">{{ getAvgRHAtSea() }}</p>
-          <p class="text-teal-500 text-xs">Hours/Day</p>
-        </div>
-        <div class="w-12 h-12 bg-gradient-to-br from-teal-200 to-teal-300 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-          <svg class="w-6 h-6 text-teal-700 group-hover:text-teal-800" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-        </div>
+    <!-- Max Days at Sea Chart -->
+    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:scale-105 animate-fade-in md:col-span-2 lg:col-span-1" style="animation-delay: 1.2s;">
+      <div class="mb-4 sm:mb-6">
+        <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+          MAX DAYS AT SEA
+        </h3>
       </div>
-      <div class="mt-4 h-1 bg-gradient-to-r from-teal-600 to-teal-700 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-    </div>
-
-    <!-- Max RH Card -->
-    <div class="group bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-orange-200/30 animate-fade-in hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.5s;">
-      <div class="flex items-center justify-between">
-        <div class="flex-1">
-          <p class="text-orange-600 text-sm font-medium mb-2">Max RH</p>
-          <p class="text-orange-800 text-2xl sm:text-3xl font-bold mb-1 group-hover:text-orange-900 transition-colors duration-300">{{ getMaxRunningHours() }}</p>
-          <p class="text-orange-500 text-xs">Peak Performance</p>
+      <div class="relative h-64 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-amber-50/50 to-orange-50/50">
+        <div class="absolute inset-0 flex items-center justify-center z-10" *ngIf="!chartsLoaded">
+          <div class="relative">
+            <div class="w-16 h-16 border-4 border-amber-200 border-t-amber-600 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-orange-600 rounded-full animate-spin animate-reverse"></div>
+          </div>
         </div>
-        <div class="w-12 h-12 bg-gradient-to-br from-orange-200 to-orange-300 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-          <svg class="w-6 h-6 text-orange-700 group-hover:text-orange-800" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-        </div>
+        <canvas #horizontalBarCanvas class="relative z-20"></canvas>
       </div>
-      <div class="mt-4 h-1 bg-gradient-to-r from-orange-600 to-orange-700 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-    </div>
-
-    <!-- Operational Ships Card -->
-    <div class="group bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-purple-200/30 animate-fade-in hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.6s;">
-      <div class="flex items-center justify-between">
-        <div class="flex-1">
-          <p class="text-purple-600 text-sm font-medium mb-2">Operational</p>
-          <p class="text-purple-800 text-2xl sm:text-3xl font-bold mb-1 group-hover:text-purple-900 transition-colors duration-300">{{ getOperationalCount() }}</p>
-          <p class="text-purple-500 text-xs">Ships</p>
-        </div>
-        <div class="w-12 h-12 bg-gradient-to-br from-purple-200 to-purple-300 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-          <svg class="w-6 h-6 text-purple-700 group-hover:text-purple-800" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-          </svg>
-        </div>
-      </div>
-      <div class="mt-4 h-1 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
     </div>
   </div>
 
@@ -245,7 +206,7 @@
   </div>
 
   <!-- Enhanced Fleet Composition Chart Section -->
-  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 0.9s;">
+  <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 0.9s;">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
         <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
@@ -276,10 +237,10 @@
       </div>
       <canvas #areaChartCanvas class="relative z-20"></canvas>
     </div>
-  </div>
+  </div> -->
 
   <!-- Enhanced Operational Readiness Chart Section -->
-  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.0s;">
+  <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.0s;">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
         <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
@@ -313,11 +274,11 @@
       </div>
       <canvas #operationalReadinessCanvas class="relative z-20"></canvas>
     </div>
-  </div>
+  </div> -->
 
   <!-- Enhanced Ship Details Chart Section -->
-  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500" style="animation-delay: 1.1s;">
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
+  <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500" style="animation-delay: 1.1s;"> -->
+    <!-- <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
         <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
           {{ selectedShip }} [FROM DATE: {{ startDate }} TO {{ endDate }}]
@@ -351,11 +312,11 @@
             class="px-3 py-2 border-2 border-gray-500 rounded-sm bg-white text-sm bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:bg-blue-600 -50/80 hover:shadow-md">
         </label>
       </div>
-    </div>
+    </div> -->
     
     <!-- Enhanced Three Panels Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-full">
-      <!-- Panel 1: OPERATIONAL READY -->
+    <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-full">
+      
       <div class="group/panel bg-gradient-to-br from-emerald-50/80 to-green-50/80 backdrop-blur-sm rounded-2xl p-6 border border-emerald-200/50 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500">
         <div class="mb-4">
           <h3 class="text-gray-800 text-lg sm:text-xl font-bold m-0 bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent group-hover/panel:scale-105 transition-transform duration-300">
@@ -366,10 +327,10 @@
         <div class="relative h-56 sm:h-64 w-full rounded-xl overflow-hidden bg-white/30">
           <canvas #operationalReadyCanvas class="relative z-20"></canvas>
         </div>
-      </div>
+      </div> -->
 
       <!-- Panel 2: MAINTENANCE -->
-      <div class="group/panel bg-gradient-to-br from-cyan-50/80 to-blue-50/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-200/50 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500">
+      <!-- <div class="group/panel bg-gradient-to-br from-cyan-50/80 to-blue-50/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-200/50 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500">
         <div class="mb-4">
           <h3 class="text-gray-800 text-lg sm:text-xl font-bold m-0 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent group-hover/panel:scale-105 transition-transform duration-300">
             MAINTENANCE
@@ -379,10 +340,10 @@
         <div class="relative h-56 sm:h-64 w-full rounded-xl overflow-hidden bg-white/30">
           <canvas #maintenanceCanvas class="relative z-20"></canvas>
         </div>
-      </div>
+      </div> -->
 
       <!-- Panel 3: MATERIAL NOT READY -->
-      <div class="group/panel bg-gradient-to-br from-purple-50/80 to-violet-50/80 backdrop-blur-sm rounded-2xl p-6 border border-purple-200/50 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500">
+      <!-- <div class="group/panel bg-gradient-to-br from-purple-50/80 to-violet-50/80 backdrop-blur-sm rounded-2xl p-6 border border-purple-200/50 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500">
         <div class="mb-4">
           <h3 class="text-gray-800 text-lg sm:text-xl font-bold m-0 bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent group-hover/panel:scale-105 transition-transform duration-300">
             MATERIAL NOT READY
@@ -394,11 +355,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Continue with remaining sections following the same enhanced pattern... -->
   <!-- Full Power Trials Chart Section -->
-  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.2s;">
+  <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.2s;">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
         <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
@@ -416,11 +377,10 @@
       </div>
       <canvas #fullPowerTrialsCanvas class="relative z-20"></canvas>
     </div>
-  </div>
+  </div> -->
 
   <!-- Enhanced Material Ready Details and Fuel Consumption Section -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8 w-full max-w-full">
-    <!-- Material Ready Details Chart -->
+  <!-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8 w-full max-w-full">
     <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl hover:scale-105 transition-all duration-500" style="animation-delay: 1.3s;">
       <div class="mb-6 sm:mb-8">
         <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
@@ -437,10 +397,10 @@
         </div>
         <canvas #materialReadyDetailsCanvas class="relative z-20"></canvas>
       </div>
-    </div>
+    </div> -->
 
     <!-- Harbour vs At Sea Fuel Consumption Chart -->
-    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl hover:scale-105 transition-all duration-500 hover:scale-105" style="animation-delay: 1.4s;">
+    <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl hover:scale-105 transition-all duration-500 hover:scale-105" style="animation-delay: 1.4s;">
       <div class="mb-6 sm:mb-8">
         <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
           HARBOUR VS AT SEA FUEL CONSUMPTION
@@ -456,12 +416,12 @@
         </div>
         <canvas #fuelConsumptionCanvas class="relative z-20"></canvas>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 
   <!-- Continue with remaining chart sections using the same enhanced pattern... -->
   <!-- Engine Exploitation Factor Chart Section -->
-  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl hover:scale-105 transition-all duration-500" style="animation-delay: 1.5s;">
+  <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl hover:scale-105 transition-all duration-500" style="animation-delay: 1.5s;">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
         <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
@@ -479,10 +439,10 @@
       </div>
       <canvas #engineExploitationFactorCanvas class="relative z-20"></canvas>
     </div>
-  </div>
+  </div> -->
 
   <!-- Diesel Generator Utilisation Factor Chart Section -->
-  <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.6s;">
+  <!-- <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.6s;">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
         <h2 class="text-gray-800 text-xl sm:text-2xl lg:text-3xl font-bold m-0 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-102 transition-transform duration-300">
@@ -500,9 +460,12 @@
       </div>
       <canvas #dieselGeneratorUtilisationFactorCanvas class="relative z-20"></canvas>
     </div>
-  </div>
+  </div> -->
 
   <!-- Top Running Hours Chart Section -->
+   <!-- Enhanced Bottom Section: Three Charts in Grid -->
+
+
   <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 shadow-xl border border-white/20 animate-fade-in hover:shadow-2xl transition-all duration-500 hover:scale-105" style="animation-delay: 1.7s;">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-6">
       <div class="flex-1 min-w-0">
@@ -556,63 +519,5 @@
     </div>
   </div>
 
-  <!-- Enhanced Bottom Section: Three Charts in Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-full">
-    <!-- Ships in Commission Chart -->
-    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:scale-105 animate-fade-in" style="animation-delay: 1.0s;">
-      <div class="mb-4 sm:mb-6">
-        <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-          SHIPS/SUBMARINES IN COMMISSION: 149
-        </h3>
-        <p class="text-gray-500 text-sm sm:text-base mt-2">PAN NAVY {{ currentDate }}</p>
-      </div>
-      <div class="relative h-64 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-violet-50/50 to-purple-50/50">
-        <div class="absolute inset-0 flex items-center justify-center z-10" *ngIf="!chartsLoaded">
-          <div class="relative">
-            <div class="w-16 h-16 border-4 border-violet-200 border-t-violet-600 rounded-full animate-spin"></div>
-            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-purple-600 rounded-full animate-spin animate-reverse"></div>
-          </div>
-        </div>
-        <canvas #barChartCanvas class="relative z-20"></canvas>
-      </div>
-    </div>
-
-    <!-- Operational Availability Chart -->
-    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:scale-105 animate-fade-in" style="animation-delay: 1.1s;">
-      <div class="mb-4 sm:mb-6">
-        <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-rose-600 via-pink-600 to-red-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-          OPERATIONAL AVAILABILITY
-        </h3>
-        <p class="text-gray-500 text-sm sm:text-base mt-2">PAN NAVY {{ currentDate }}</p>
-      </div>
-      <div class="relative h-64 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-rose-50/50 to-pink-50/50">
-        <div class="absolute inset-0 flex items-center justify-center z-10" *ngIf="!chartsLoaded">
-          <div class="relative">
-            <div class="w-16 h-16 border-4 border-rose-200 border-t-rose-600 rounded-full animate-spin"></div>
-            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-pink-600 rounded-full animate-spin animate-reverse"></div>
-          </div>
-        </div>
-        <canvas #donutChartCanvas class="relative z-20"></canvas>
-      </div>
-    </div>
-
-    <!-- Max Days at Sea Chart -->
-    <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:scale-105 animate-fade-in md:col-span-2 lg:col-span-1" style="animation-delay: 1.2s;">
-      <div class="mb-4 sm:mb-6">
-        <h3 class="text-gray-800 text-lg sm:text-xl lg:text-2xl font-bold m-0 bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-          MAX DAYS AT SEA
-        </h3>
-        <p class="text-gray-500 text-sm sm:text-base mt-2">PAN NAVY {{ currentDate }}</p>
-      </div>
-      <div class="relative h-64 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-amber-50/50 to-orange-50/50">
-        <div class="absolute inset-0 flex items-center justify-center z-10" *ngIf="!chartsLoaded">
-          <div class="relative">
-            <div class="w-16 h-16 border-4 border-amber-200 border-t-amber-600 rounded-full animate-spin"></div>
-            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-orange-600 rounded-full animate-spin animate-reverse"></div>
-          </div>
-        </div>
-        <canvas #horizontalBarCanvas class="relative z-20"></canvas>
-      </div>
-    </div>
-  </div>
+  
 </div>

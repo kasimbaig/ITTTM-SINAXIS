@@ -14,18 +14,14 @@
   box-sizing: border-box;
 }
 
-.bg-primary-purple {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+.bg-primary-blue {
+  background-color: #04308f;
   color: white;
 }
 
-.bg-primary-teal {
-  background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+.bg-primary-blue-600 {
+  background-color: #04308f;
   color: white;
-}
-
-.bg-gradient-modern {
-  background: linear-gradient(135deg, #faf5ff 0%, #f0fdfa 100%);
 }
 
 html {
@@ -154,6 +150,10 @@ aside {
   /* Track color */
 }
 
+input[type="file"] {
+  display: none;
+}
+
 /* Show scrollbar only when hovering */
 .sidebar-scroll:hover::-webkit-scrollbar {
   opacity: 1;
@@ -192,17 +192,12 @@ aside {
   background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%) !important;
   color: var(--text-white) !important;
   border: none !important;
-  padding: 12px 28px;
+  padding: 10px 20px;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px var(--shadow-medium);
-}
-
-.p-button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 32px var(--shadow-dark);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px var(--shadow-medium);
 }
 
 .view-report-btn .p-button {
@@ -216,10 +211,9 @@ aside {
   background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
   color: var(--text-white);
   padding: 20px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  border-bottom: 3px solid var(--accent-teal);
+  letter-spacing: 0.5px;
 }
 
 .p-button-info {
@@ -282,18 +276,12 @@ p {
 
 /* Card Styling */
 .p-card {
-  border-radius: 16px;
-  box-shadow: 0 8px 32px var(--shadow-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow-light);
   background: var(--bg-primary);
   margin: 32px 0;
   border: 1px solid var(--border-light);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-}
-
-.p-card:hover {
-  box-shadow: 0 16px 48px var(--shadow-medium), 0 0 0 1px var(--accent-purple);
-  transform: translateY(-4px);
+  transition: all 0.3s ease;
 }
 
 /* Input Field */
@@ -310,12 +298,10 @@ th {
   background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%) !important;
   color: var(--text-white) !important;
   text-align: left;
-  padding: 16px;
-  font-weight: 700;
+  padding: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.875rem;
-  border-bottom: 3px solid var(--accent-teal) !important;
+  letter-spacing: 0.5px;
 }
 
 .dept-list {
@@ -355,15 +341,14 @@ td {
 
 .header span h2 {
   text-align: left;
-  font-size: 36px;
-  background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--accent-purple) 100%);
+  font-size: 32px;
+  background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 700;
+  font-weight: 600;
   cursor: default;
   line-height: 140%;
-  letter-spacing: -0.5px;
 }
 
 .add-dept-modal input,
