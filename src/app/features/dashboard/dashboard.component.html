@@ -152,7 +152,7 @@
     </div>
 
     <!-- Filters -->
-    <!-- <div class="dashboard-header w-full max-w-full">
+    <div class="dashboard-header w-full max-w-full">
       <div class="filter-group">
         <p-dropdown [options]="commands" [(ngModel)]="selectedCommand" placeholder="Command"
           optionLabel="label" optionValue="value" (onChange)="onCommandChange()" [showClear]="true" [filter]="true" [filterBy]="'label'"
@@ -166,10 +166,26 @@
           optionLabel="label" optionValue="value" [disabled]="!selectedShip" (onChange)="onDeptChange()"
           [showClear]="true" styleClass="filter-dropdown" [filter]="true" [filterBy]="'label'"></p-dropdown>
 
+        <!-- <p-calendar [(ngModel)]="dateRange" selectionMode="range" placeholder="Select Date Range" [showIcon]="true"
+          dateFormat="dd/mm/yy" [readonlyInput]="true"></p-calendar> -->
+
         <button pButton label="Apply" icon="pi pi-check" (click)="applyFilters()" class="p-ml-2 btn-app"></button>
         <button pButton label="Clear" icon="pi pi-times" (click)="clearFilters()" class="p-ml-2 btn-app"></button>
       </div>
-    </div> -->
+    </div>
+
+    <div class="w-full bg-white p-3 rounded-xl shadow-lg">
+      <div class="w-full ">
+        <app-ocrc [menuExpanded]="menuExpanded"></app-ocrc>
+      </div>
+      <div class="chart-container mt-3">
+        <app-defect-list
+      [command]="selectedCommand !== null ? selectedCommand.toString() : null"
+      [ship]="selectedShip !== null ? selectedShip.toString() : null"
+      [dept]="selectedDept !== null ? selectedDept.toString() : null"
+    ></app-defect-list>
+      </div>
+    </div>
 
     <div class="charts-section w-full max-w-full mt-4">
       <div class="chart-container">
@@ -182,21 +198,6 @@
         <app-frequent-defects [chartData]="frequentDefectData"></app-frequent-defects>
       </div>
     </div>
-    
-    <div class="w-full bg-white p-3 rounded-xl shadow-lg">
-      <!-- <div class="w-full ">
-        <app-ocrc [menuExpanded]="menuExpanded"></app-ocrc>
-      </div> -->
-      <div class="chart-container mt-3">
-        <app-defect-list
-      [command]="selectedCommand !== null ? selectedCommand.toString() : null"
-      [ship]="selectedShip !== null ? selectedShip.toString() : null"
-      [dept]="selectedDept !== null ? selectedDept.toString() : null"
-    ></app-defect-list>
-      </div>
-    </div>
-
-    
    
     <app-projection-chart ></app-projection-chart>
     <!-- Fleet Status Section -->
