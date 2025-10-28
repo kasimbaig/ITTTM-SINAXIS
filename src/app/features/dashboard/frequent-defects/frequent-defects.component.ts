@@ -38,18 +38,12 @@ export class FrequentDefectsComponent implements OnChanges {
     };
 
     this.chartData = {
-      labels: ['Engine Failure', 'Electrical Issues', 'Navigation Problems', 'Hull Damage', 'Communication Faults'],
+      labels: ['  Pending', 'Ongoing', 'Completed', 'Rejected'],
       datasets: [{
-        label: 'Frequency of Defects',
-        data: [25, 18, 12, 8, 15],
+        label: 'Trial Status Distribution',
+        data: [25, 18, 12, 8],
+
         backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#4BC0C0',
-          '#9966FF'
-        ],
-        borderColor: [
           '#FF6384',
           '#36A2EB',
           '#FFCE56',

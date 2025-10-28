@@ -1,103 +1,95 @@
 
-<div class="dashboard overflow-x-hidden min-h-screen grid grid-cols-1 lg:grid-cols-2">
-  <!-- Left side: Slightly darker formal gradient, centered content -->
-  <div class="relative min-h-screen flex flex-col items-center justify-center p-8 text-white bg-gradient-to-br from-indigo-950 via-slate-950 to-black">
-    <h1 class="text-3xl md:text-4xl font-bold text-center tracking-tight">
-      Integrated Testing and Tuning Trials Management (ITTTM)
-    </h1>
-    <img
-      src="assets/indian-navy-emblem.png"
-      alt="Indian Navy Emblem"
-      class="mt-8 w-48 h-auto object-contain drop-shadow-lg"
-    />
-    <p class="mt-12 max-w-xl text-sm md:text-base text-slate-300 leading-relaxed text-center lg:text-left" style="text-align: justify;">
-      Empowering naval forces with a secure digital ecosystem that connects testing, trials, and performance — driving smarter insights and superior readiness across every stage of the fleet’s life cycle.
-    </p>
-  </div>
+<div class="dashboard overflow-x-hidden">
 
-  <!-- Right side: Page content with subtle background; footer transparent -->
-  <div class="flex flex-col min-h-screen lg:min-h-0 bg-gradient-to-br from-slate-50 to-white">
-    <!-- Main Content -->
-    <main class="container main-content flex-1">
-      <div class="dropdowns-container1 w-full max-w-full">
-        <div class="dropdowns-sec" *ngFor="let card of shipCard">
-          <label class="dropdown-label">{{ card.label }}</label>
-          <p-dropdown
-            [options]="card.options"
-            [(ngModel)]="card.selectedOption"
-            placeholder="Select {{ card.label }}"
-            (onChange)="applyFilter(card.label, $event.value)"
-          >
-          </p-dropdown>
-        </div>
-        <button class="btn reset-btn" (click)="resetFilters()">Reset</button>
-      </div>
-  
-      <!-- Dashboard Title -->
-      <div class="mb-8">
-        <p class="text-gray-500 mt-1">
-          Comprehensive overview of the fleet maintenance operations
-        </p>
-      </div>
-  
-      <!-- Stats Overview -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 w-full max-w-full">
-        <app-stat-card
-          *ngFor="let stat of stats; let i = index"
-          [title]="stat.title"
-          [value]="stat.value"
-          [description]="stat.change"
-          [icon]="getStatIcon(i)"
-          [color]="getCardColor(i)"
+
+  <!-- Main Content -->
+  <main class="container main-content">
+    <div class="dropdowns-container1 w-full max-w-full">
+      <div class="dropdowns-sec" *ngFor="let card of shipCard">
+        <label class="dropdown-label">{{ card.label }}</label>
+        <p-dropdown
+          [options]="card.options"
+          [(ngModel)]="card.selectedOption"
+          placeholder="Select {{ card.label }}"
+          (onChange)="applyFilter(card.label, $event.value)"
         >
-        </app-stat-card>
+        </p-dropdown>
       </div>
-  
-      <!-- Charts & Tables Section -->
-      <!-- Charts Row -->
-      <div class="charts-container w-full max-w-full">
-        <p-card class="chart-card">
-          <app-dash3-chart (segmentClick)="onSegmentClicked($event)" [data]="chartData2"></app-dash3-chart>
-        </p-card>
-        <p-card class="chart-card">
-          <app-dash4-chart [data]="chartData4" [title]="'Department Tasks'"></app-dash4-chart>
-        </p-card>
-      </div>
-  
-      <div class="dropdowns-container w-full max-w-full">
-        <div class="dropdowns-sec" *ngFor="let card of cards">
-          <label class="dropdown-label">{{ card.label }}</label>
-          <p-dropdown
-            [options]="card.options"
-            [(ngModel)]="card.selectedOption"
-            placeholder="Select {{ card.label }}"
-            (onChange)="applyFilter(card.label, $event.value)"
-          >
-          </p-dropdown>
-        </div>
-        <button class="btn reset-btn" (click)="resetFilters()">
-          <i class="pi pi-filter-slash"></i> Reset
-        </button>
-      </div>
-  
-      <div class="mb-8 w-full max-w-full">
-        <app-paginated-table
-          [data]="maintopDetails"
-          [columns]="cols"
-          [showEndActions]="true"
-        ></app-paginated-table>
-      </div>
-    </main>
-  
-    <!-- Footer on the right side, bottom, centered text (transparent) -->
-    <footer class="bg-transparent py-4 w-full mt-auto">
-      <div class="container text-center text-sm text-gray-500">
-        Naval CMMS ohoo Maintops Module Dashboard &copy; {{ currentYear }}
-      </div>
-    </footer>
-  </div>
+      <button class="btn reset-btn" (click)="resetFilters()">Reset</button>
+    </div>
+
+    <!-- Dashboard Title -->
+    <div class="mb-8">
+ 
+
+      <p class="text-gray-500 mt-1">
+        Comprehensive overview of the fleet maintenance operations
+      </p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 w-full max-w-full">
+      <app-stat-card
+        *ngFor="let stat of stats; let i = index"
+        [title]="stat.title"
+        [value]="stat.value"
+        [description]="stat.change"
+        [icon]="getStatIcon(i)"
+        [color]="getCardColor(i)"
+      >
+      </app-stat-card>
+    </div>
+
+    <!-- Charts & Tables Section -->
+    <!-- Charts & Tables Section (first row) -->
+ <!-- Charts Row -->
+ <div class="charts-container w-full max-w-full">
+  <p-card class="chart-card">
+    <app-dash3-chart (segmentClick)="onSegmentClicked($event)" [data]="chartData2"></app-dash3-chart>
+  </p-card>
+  <p-card class="chart-card">
+    <app-dash4-chart [data]="chartData4"   [title]="'Department Tasks'"></app-dash4-chart>
+  </p-card>
 </div>
 
+
+   
+
+
+    <div class="dropdowns-container w-full max-w-full">
+      <div class="dropdowns-sec" *ngFor="let card of cards">
+        <label class="dropdown-label">{{ card.label }}</label>
+        <p-dropdown
+          [options]="card.options"
+          [(ngModel)]="card.selectedOption"
+          placeholder="Select {{ card.label }}"
+          (onChange)="applyFilter(card.label, $event.value)"
+        >
+        </p-dropdown>
+      </div>
+      <button class="btn reset-btn" (click)="resetFilters()">
+        <i class="pi pi-filter-slash"></i> Reset
+      </button>
+    </div>
+
+    <div class="mb-8 w-full max-w-full">
+      <app-paginated-table
+        [data]="maintopDetails"
+        [columns]="cols"
+        [showEndActions]="true"
+      ></app-paginated-table>
+    </div>
+
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-4 w-full max-w-full">
+    <div class="container text-center text-sm text-gray-500">
+      Naval CMMS ohoo Maintops Module Dashboard &copy; {{ currentYear }}
+    </div>
+  </footer>
+</div>
 <p-dialog
   header="{{ selectedStatus }} Tasks"
   [(visible)]="displayPopup"

@@ -38,7 +38,7 @@ export class SidebarComponent implements OnChanges {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.activeItem = event.urlAfterRedirects;
-        // this.collapseSidebar.emit();
+        this.collapseSidebar.emit();
       }
     });
   }
@@ -131,13 +131,13 @@ export class SidebarComponent implements OnChanges {
     return currentUrl === path || currentUrl.startsWith(path + '/');
   }
   toggleSidebar() {
-    // this.expanded = !this.expanded;
-    // if (!this.expanded) {
-    //   this.openSubMenus = {};
-    // }
+    this.expanded = !this.expanded;
+    if (!this.expanded) {
+      this.openSubMenus = {};
+    }
     //console.log('toggleSidebar called, expanded:', this.expanded);
     // Emit to parent to sync the state
-    // this.collapseSidebar.emit();
+    this.collapseSidebar.emit();
   }
 
   toggleSubMenu(path: string) {
@@ -153,7 +153,7 @@ export class SidebarComponent implements OnChanges {
     this.router.navigate([path]);
     // Auto-collapse sidebar when navigating
     //console.log('Emitting collapseSidebar from navigateTo');
-    // this.collapseSidebar.emit();
+    this.collapseSidebar.emit();
   }
 
   logOut() {
