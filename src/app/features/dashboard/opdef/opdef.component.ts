@@ -51,11 +51,11 @@ export class OpdefComponent implements OnInit, OnChanges {
     const selectedCommand = this.command || 'Default Command';
 
     this.chartData = {
-      labels: ['Electrical', 'Mechanical', 'Navigation'],
+      labels: ['Draft', 'Approved','Save', 'Rejected',],
       datasets: [{
-        label: `${selectedShip} Defects`,
-        data: [12, 5, 8],
-        backgroundColor: '#42A5F5'
+        label: `${selectedShip} SHIP Inspection Status`,
+        data: [12, 5, 8, 3, 7],
+        backgroundColor:['#42A5F5', '#66BB6A', '#FFA726', '#EF5350']
       }]
     };
   }
